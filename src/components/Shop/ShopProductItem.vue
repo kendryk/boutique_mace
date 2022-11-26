@@ -1,0 +1,19 @@
+<template>
+    <div class="w-25 border product-container">
+        Item
+    </div>
+</template>
+
+<script>
+
+export default {
+
+}
+</script>
+
+<style>
+.product-container{
+    height: 200px;
+    padding: 5px
+}
+</style>

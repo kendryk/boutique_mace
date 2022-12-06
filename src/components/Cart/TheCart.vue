@@ -1,9 +1,6 @@
 <template>
   <div>
-    <h2 class="pb-3">Mes achats</h2>
-    <hr />
     <cart-products-list :cart="cart" />
-    <hr />
   </div>
 </template>
 

@@ -19,8 +19,18 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
-          <a class="nav-link" href="#">Boutique</a>
-          <a class="nav-link" href="#">Admin</a>
+          <a
+            class="nav-link"
+            :class="{ active: page === 'TheUser' }"
+            @click="changePage('TheUser')"
+            >Boutique</a
+          >
+          <a
+            class="nav-link"
+            :class="{ active: page === 'TheAdmin' }"
+            @click="changePage('TheAdmin')"
+            >Admin</a
+          >
         </div>
       </div>
     </div>
@@ -28,7 +38,26 @@
 </template>
 
 <script>
-export default {};
+import { eventBus } from "../main";
+
+export default {
+  data() {
+    return {
+      page: eventBus.page,
+    };
+  },
+
+  methods: {
+    changePage(page) {
+      eventBus.changePage(page);
+      this.page = page;
+    },
+  },
+};
 </script>
 
-<style></style>
+<style scoped>
+a {
+  cursor: pointer;
+}
+</style>

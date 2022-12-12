@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CartProductsList from "./CartProductsList.vue";
+import CartProductsList from "./CartProductsList";
 import { eventBus } from "../../../../main";
 
 export default {

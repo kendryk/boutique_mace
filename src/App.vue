@@ -2,7 +2,7 @@
   <div id="app">
     <the-header></the-header>
 
-    <div class="d-flex flex-collumn v-100">
+    <div class="d-flex flex-column v-100">
       <components :is="page"></components>
     </div>
     

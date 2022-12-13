@@ -31,7 +31,7 @@ export const eventBus = new Vue({
       },
     ],
     cart: [],
-    page: 'TheAdmin',
+    page: "TheAdmin",
   },
   methods: {
     addProductToCart(product) {
@@ -47,7 +47,14 @@ export const eventBus = new Vue({
     changePage(page) {
       this.page = page;
       this.$emit("update:page", this.page);
-    }
+    },
+    addProduct(product) {
+      (this.products = [
+        ...this.products,
+        { ...product, id: this.products.length + 1 + "" },
+      ]),
+        this.$emit("update:products", this.products);
+    },
   },
 });
 

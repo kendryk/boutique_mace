@@ -29,12 +29,10 @@
       <!-- Visualisation des erreurs -->
 
       <ul v-if="errors.length">
-        <li class="text-danger" v-for="error in errors" :key="error"> {{ error}}</li>
+        <li class="text-danger" v-for="error in errors" :key="error">
+          {{ error }}
+        </li>
       </ul>
-
-      <!-- Visualisation du formulaire -->
-
-      <pre>{{ $data }}</pre>
 
       <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
@@ -42,6 +40,8 @@
 </template>
 
 <script>
+import { eventBus } from "../../../main";
+
 export default {
   data() {
     return {
@@ -58,32 +58,39 @@ export default {
     trySubmit(event) {
       event.preventDefault();
       if (this.formIsValid()) {
-        console.log({ ...this.form });
+        eventBus.addProduct({ ...this.form });
+        // this.resetForm(); il ne sert plus
+        eventBus.changePage('TheUser');
       }
     },
-
-    formIsValid(){
-       this.errors = [];
-      if(!this.form.img){
-        this.errors.push('image required')
-      }
-      
-      if(!this.form.title){
-        this.errors.push('title required')
-      }
-      
-      if(!this.form.description){
-        this.errors.push('description required')
-      }
-      
-      if(!this.form.price){
-        this.errors.push('price required')
+    resetForm() {
+      this.form = {
+        img: "",
+        title: "",
+        description: "",
+        price: "",
+      };
+    },
+    formIsValid() {
+      this.errors = [];
+      if (!this.form.img) {
+        this.errors.push("image required");
       }
 
-      // si on a quelqueChose dans 
+      if (!this.form.title) {
+        this.errors.push("title required");
+      }
+
+      if (!this.form.description) {
+        this.errors.push("description required");
+      }
+
+      if (!this.form.price) {
+        this.errors.push("price required");
+      }
+
       return this.errors.length ? false : true;
-    }
-
+    },
   },
 };
 </script>

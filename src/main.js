@@ -31,7 +31,7 @@ export const eventBus = new Vue({
       },
     ],
     cart: [],
-    page: 'TheUser',
+    page: 'TheAdmin',
   },
   methods: {
     addProductToCart(product) {

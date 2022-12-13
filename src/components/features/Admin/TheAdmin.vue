@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="adminVue">
     <admin-product-form></admin-product-form>
   </div>
 </template>
@@ -14,4 +14,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+  .adminVue{
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+  }
+
+</style>

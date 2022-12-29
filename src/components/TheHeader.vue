@@ -6,7 +6,10 @@
         Macé
       </a>
       <button class="navbar-toggler">
-        <span class="navbar-toggler-icon" v-trigger-collapse="'navbarNavAltMarkup'"></span>
+        <span
+          class="navbar-toggler-icon"
+          v-trigger-collapse="'navbarNavAltMarkup'"
+        ></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
@@ -15,6 +18,9 @@
             :class="{ active: page === 'TheUser' }"
             @click="changePage('TheUser')"
           >
+            Boutique
+          </a>
+
           <a
             class="nav-link"
             :class="{ active: page === 'TheAdmin' }"
@@ -41,35 +47,32 @@ export default {
   methods: {
     changePage(page) {
       eventBus.changePage(page);
-    
-    },
-    created() {
-      eventBus.$on("update:page", (page) => {
-        this.page = page;
-        
-      });
     },
   },
-  directives:{
-    TriggerCollapse:{
-      inserted(el,binding){
-        window.addEventListener('click', ()=>{
-          nav.classList.remove('show');
-        })
+  created() {
+    eventBus.$on("update:page", (page) => {
+      this.page = page;
+    });
+  },
+  directives: {
+    TriggerCollapse: {
+      inserted(el, binding) {
+        window.addEventListener("click", () => {
+          nav.classList.remove("show");
+        });
 
         const nav = document.querySelector(`#${binding.value}`);
-        el.addEventListener('click', (e)=>{
-          if(nav.classList.contains('show')){
-            nav.classList.remove('show');
-          }else{
-            nav.classList.add('show');
+        el.addEventListener("click", (e) => {
+          if (nav.classList.contains("show")) {
+            nav.classList.remove("show");
+          } else {
+            nav.classList.add("show");
           }
           e.stopPropagation();
-        })
-      
-      }
-    }
-  }
+        });
+      },
+    },
+  },
 };
 </script>
 

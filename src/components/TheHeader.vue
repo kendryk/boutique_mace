@@ -5,32 +5,23 @@
         <img src="../assets/logo.png" width="30" height="30" />
         Macé
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler">
+        <span class="navbar-toggler-icon" v-trigger-collapse="'navbarNavAltMarkup'"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
           <a
             class="nav-link"
             :class="{ active: page === 'TheUser' }"
             @click="changePage('TheUser')"
-            >Boutique</a
           >
           <a
             class="nav-link"
             :class="{ active: page === 'TheAdmin' }"
             @click="changePage('TheAdmin')"
-            >Admin</a
           >
+            Admin
+          </a>
         </div>
       </div>
     </div>
@@ -50,14 +41,35 @@ export default {
   methods: {
     changePage(page) {
       eventBus.changePage(page);
-      
+    
     },
     created() {
       eventBus.$on("update:page", (page) => {
         this.page = page;
+        
       });
     },
   },
+  directives:{
+    TriggerCollapse:{
+      inserted(el,binding){
+        window.addEventListener('click', ()=>{
+          nav.classList.remove('show');
+        })
+
+        const nav = document.querySelector(`#${binding.value}`);
+        el.addEventListener('click', (e)=>{
+          if(nav.classList.contains('show')){
+            nav.classList.remove('show');
+          }else{
+            nav.classList.add('show');
+          }
+          e.stopPropagation();
+        })
+      
+      }
+    }
+  }
 };
 </script>
 

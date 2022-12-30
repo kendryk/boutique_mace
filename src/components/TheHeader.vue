@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#">
         <img src="../assets/logo.png" width="30" height="30" />
         Macé
-      </a>
+    </a>
       <button class="navbar-toggler">
         <span
           class="navbar-toggler-icon"
@@ -13,21 +13,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a
-            class="nav-link"
-            :class="{ active: page === 'TheUser' }"
-            @click="changePage('TheUser')"
-          >
-            Boutique
-          </a>
+          <router-link class="nav-link" to="/shop"> Boutique </router-link>
 
-          <a
-            class="nav-link"
-            :class="{ active: page === 'TheAdmin' }"
-            @click="changePage('TheAdmin')"
-          >
-            Admin
-          </a>
+          <router-link class="nav-link" to="/admin"> Admin </router-link>
         </div>
       </div>
     </div>
@@ -35,25 +23,7 @@
 </template>
 
 <script>
-import { eventBus } from "../main";
-
 export default {
-  data() {
-    return {
-      page: eventBus.page,
-    };
-  },
-
-  methods: {
-    changePage(page) {
-      eventBus.changePage(page);
-    },
-  },
-  created() {
-    eventBus.$on("update:page", (page) => {
-      this.page = page;
-    });
-  },
   directives: {
     TriggerCollapse: {
       inserted(el, binding) {
@@ -79,5 +49,9 @@ export default {
 <style scoped>
 a {
   cursor: pointer;
+}
+
+router-link active {
+  font-weight: bold;
 }
 </style>

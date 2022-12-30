@@ -59,8 +59,7 @@ export default {
       event.preventDefault();
       if (this.formIsValid()) {
         eventBus.addProduct({ ...this.form });
-        // this.resetForm(); il ne sert plus
-        eventBus.changePage('TheUser');
+        this.$router.push('/shop');
       }
     },
     resetForm() {
